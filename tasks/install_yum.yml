@@ -12,6 +12,15 @@
     name: "{{ postgresql_yum_repository_url }}"
     state: present
 
+- name: PostgreSQL | Blacklist CentOS PostgreSQL packages
+  replace: |
+    dest=/etc/yum.repos.d/CentOS-Base.repo \
+    regexp='^\[{{ item }}\]\n(?!exclude=postgresql*)' \
+    replace='[{{ item }}]\nexclude=postgresql*\n'
+  with_items:
+    - "base"
+    - "updates"
+
 - name: PostgreSQL | Make sure the dependencies are installed
   yum:
     name: "{{ item }}"
