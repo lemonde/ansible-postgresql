@@ -713,48 +713,4 @@ postgresql_apt_repository: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ansib
 postgresql_apt_pin_priority: 500
 
 # Yum settings
-postgresql_pgdg_dists:
-  RedHat: redhat
-  CentOS: centos
-  Scientific: sl
-  SLC: sl
-  OracleLinux: oraclelinux
-postgresql_pgdg_releases:
-  redhat: {
-      9.1: 8,
-      9.2: 9,
-      9.3: 3,
-      9.4: 3,
-      9.5: 3,
-      9.6: 3,
-      10: 1,
-  }
-  centos: {
-      9.1: 7,
-      9.2: 8,
-      9.3: 3,
-      9.4: 3,
-      9.5: 3,
-      9.6: 3,
-      10: 1,
-  }
-  sl: {
-      9.1: 8,
-      9.2: 9,
-      9.3: 3,
-      9.4: 3,
-      9.5: 3,
-      9.6: 3,
-      10: 1,
-  }
-  oraclelinux: {
-      9.1: 8,
-      9.2: 9,
-      9.3: 3,
-      9.4: 3,
-      9.5: 3,
-      9.6: 3,
-      10: 1,
-  }
 postgresql_version_terse: "{{ postgresql_version | replace('.', '') }}"
-postgresql_yum_repository_base_url: "http://yum.postgresql.org"
