@@ -172,8 +172,8 @@
     enabled: yes
   when: postgresql_service_enabled
 
-- name: PostgreSQL | Restart PostgreSQL
+- name: "PostgreSQL | {% if 'packer' in ansible_hostname %}Restart{% else %}Reload{% endif %} PostgreSQL"
   service:
     name: "{{ postgresql_service_name }}"
-    state: restarted
+    state: "{% if 'packer' in ansible_hostname %}restarted{% else %}reloaded{% endif %}"
   when: postgresql_configuration_pt1.changed or postgresql_configuration_pt2.changed or postgresql_configuration_pt3.changed or postgresql_systemd_custom_conf.changed

@@ -13,4 +13,4 @@
     cache_valid_time: "{{apt_cache_valid_time | default (3600)}}"
   with_items: "{{ postgresql_ext_postgis_deps }}"
   notify:
-    - restart postgresql
+    - "{% if 'packer' in ansible_hostname %}restart postgresql{% else %}reload postgresql{% endif %}"
