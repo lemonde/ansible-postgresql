@@ -8,7 +8,7 @@
     cache_valid_time: "{{apt_cache_valid_time | default (3600)}}"
   when: ansible_os_family == "Debian"
   notify:
-    - restart postgresql
+    - "{% if 'packer' in ansible_hostname %}restart postgresql{% else %}reload postgresql{% endif %}"
 
 - name: PostgreSQL | Extensions | Make sure the development headers are installed | RedHat
   yum: "name={{ item }} state=present update_cache=yes"
@@ -17,4 +17,4 @@
     - "postgresql{{ postgresql_version_terse }}-devel"
   when: ansible_os_family == "RedHat"
   notify:
-    - restart postgresql
+    - "{% if 'packer' in ansible_hostname %}restart postgresql{% else %}reload postgresql{% endif %}"
